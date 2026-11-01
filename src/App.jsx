@@ -88,26 +88,30 @@ export default function App() {
           <small>invite you to celebrate their marriage</small>
         </div>
 
-        <button className="envelope" type="button" onClick={openInvitation} aria-label="Open Andrew and Clara's wedding invitation">
-          <span className="envelope__back" />
-          <span className="envelope__letter">
-            <small>You are invited</small>
-            <strong>Andrew <i>&</i> Clara</strong>
-            <em>5:30 PM</em>
-          </span>
-          <span className="envelope__front" />
-          <span className="envelope__flap" />
-          <span className="envelope__foil" aria-hidden="true">
-            <small>Wedding invitation</small>
-            <strong>Andrew <i>&</i> Clara</strong>
-          </span>
-          <span className="wax-seal"><Monogram small /></span>
-        </button>
+        <div className="envelope-stage">
+          {!opened && (
+            <button className="open-prompt" onClick={openInvitation} type="button">
+              <span>Open the invitation</span>
+              <ArrowIcon />
+            </button>
+          )}
 
-        <button className="open-prompt" onClick={openInvitation} type="button">
-          <span>{opened ? 'Invitation opened' : 'Open the invitation'}</span>
-          {!opened && <ArrowIcon />}
-        </button>
+          <button className="envelope" type="button" onClick={openInvitation} aria-label="Open Andrew and Clara's wedding invitation">
+            <span className="envelope__back" />
+            <span className="envelope__letter">
+              <small>You are invited</small>
+              <strong>Andrew <i>&</i> Clara</strong>
+              <em>5:30 PM</em>
+            </span>
+            <span className="envelope__front" />
+            <span className="envelope__flap" />
+            <span className="envelope__foil" aria-hidden="true">
+              <small>Wedding invitation</small>
+              <strong>Andrew <i>&</i> Clara</strong>
+            </span>
+            <span className="wax-seal"><Monogram small /></span>
+          </button>
+        </div>
 
         <div className="hero__scroll" aria-hidden="true">
           <span />
