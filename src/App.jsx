@@ -50,13 +50,20 @@ export default function App() {
     setOpened(true)
     if (audioRef.current) {
       audioRef.current.volume = 0.55
+      if (audioRef.current.currentTime < 11) audioRef.current.currentTime = 11
       audioRef.current.play().catch(() => {})
     }
   }
 
   return (
     <main className={opened ? 'invitation is-open' : 'invitation'}>
-      <audio ref={audioRef} src={weddingSong} preload="metadata" loop />
+      <audio
+        ref={audioRef}
+        src={weddingSong}
+        preload="metadata"
+        loop
+        onLoadedMetadata={(event) => { event.currentTarget.currentTime = 11 }}
+      />
 
       <section className="hero hero--illustrated" aria-label="Wedding invitation cover">
         <img
@@ -163,6 +170,20 @@ export default function App() {
               <ArrowIcon />
             </a>
           )}
+        </div>
+      </section>
+
+      <section className="scripture" aria-labelledby="scripture-reference">
+        <div className="scripture__frame">
+          <div className="scripture__cord" aria-hidden="true">
+            <span /><span /><span />
+          </div>
+          <p className="kicker" id="scripture-reference">Ecclesiastes 4:9–12</p>
+          <blockquote>
+            “Two are better than one…<br />
+            A cord of <em>three strands</em> is not quickly broken.”
+          </blockquote>
+          <div className="scripture__mark" aria-hidden="true">✦</div>
         </div>
       </section>
 
