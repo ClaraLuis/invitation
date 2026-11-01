@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import weddingIllustration from '../assets/andrew-clara-illustration.png'
 
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Heliopolis+Evangelical+Church+18+Cleopatra+Almazah+Heliopolis+Cairo'
+const PARTY_MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Rival+Open+Air+Hotel+Entrance+Tulip+from+Suez+Rd+Cairo+Governorate+4751020'
 const SONG_VIDEO_ID = 'NtLLVs-jA4U'
 
 function Monogram({ small = false }) {
@@ -165,16 +166,34 @@ export default function App() {
             <h3>Heliopolis<br />Evangelical Church</h3>
             <address>18 Cleopatra, Almazah<br />Heliopolis, Cairo</address>
           </article>
+
+          <article className="event-grid__party">
+            <span className="event-grid__index">03</span>
+            <p className="kicker">The after-party</p>
+            <h3>Rival<br />Open Air</h3>
+            <p className="event-grid__timing">Right after church</p>
+            <address>Hotel Entrance, Tulip, from Suez Rd<br />Cairo Governorate 4751020</address>
+          </article>
         </div>
 
-        <a className="map-link" href={MAP_URL} target="_blank" rel="noreferrer">
-          <PinIcon />
-          <span>
-            <small>Open location</small>
-            <strong>View on Google Maps</strong>
-          </span>
-          <ArrowIcon />
-        </a>
+        <div className="location-links">
+          <a className="map-link" href={MAP_URL} target="_blank" rel="noreferrer">
+            <PinIcon />
+            <span>
+              <small>Ceremony location</small>
+              <strong>Heliopolis Evangelical Church</strong>
+            </span>
+            <ArrowIcon />
+          </a>
+          <a className="map-link map-link--party" href={PARTY_MAP_URL} target="_blank" rel="noreferrer">
+            <PinIcon />
+            <span>
+              <small>After-party location</small>
+              <strong>Rival Open Air</strong>
+            </span>
+            <ArrowIcon />
+          </a>
+        </div>
       </section>
 
       <section className="closing">
