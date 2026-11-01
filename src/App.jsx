@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import editorialPhoto from '../assets/andrew-clara-editorial.png'
+import weddingIllustration from '../assets/andrew-clara-illustration.png'
 
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Heliopolis+Evangelical+Church+18+Cleopatra+Almazah+Heliopolis+Cairo'
 const SONG_VIDEO_ID = 'NtLLVs-jA4U'
@@ -93,7 +95,7 @@ export default function App() {
       <section className="hero" aria-label="Wedding invitation cover">
         <img
           className="hero__photo"
-          src="/assets/andrew-clara-editorial.png"
+          src={editorialPhoto}
           alt="Black and white editorial portrait of a bride and groom holding hands"
         />
         <div className="hero__shade" />
@@ -185,7 +187,7 @@ export default function App() {
         <figure className="portrait__art">
           <span className="portrait__halo" aria-hidden="true">A&C</span>
           <img
-            src="/assets/andrew-clara-illustration.png"
+            src={weddingIllustration}
             alt="Sepia illustration of a bride and groom standing arm in arm"
           />
           <figcaption>Andrew & Clara · Together, always</figcaption>
