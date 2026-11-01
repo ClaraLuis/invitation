@@ -51,6 +51,9 @@ function MusicIcon({ paused = false }) {
 export default function App() {
   const [opened, setOpened] = useState(false)
   const [musicOn, setMusicOn] = useState(false)
+  const [showAfterParty] = useState(
+    () => new URLSearchParams(window.location.search).get('i') === 't',
+  )
   const detailsRef = useRef(null)
 
   useEffect(() => {
@@ -152,7 +155,7 @@ export default function App() {
 
         <div className="details__rule"><span>A</span><i /><span>C</span></div>
 
-        <div className="event-grid">
+        <div className={showAfterParty ? 'event-grid event-grid--with-party' : 'event-grid'}>
           <article>
             <span className="event-grid__index">01</span>
             <p className="kicker">The ceremony</p>
@@ -167,16 +170,18 @@ export default function App() {
             <address>18 Cleopatra, Almazah<br />Heliopolis, Cairo</address>
           </article>
 
-          <article className="event-grid__party">
-            <span className="event-grid__index">03</span>
-            <p className="kicker">The after-party</p>
-            <h3>Rival<br />Open Air</h3>
-            <p className="event-grid__timing">Right after church</p>
-            <address>Hotel Entrance, Tulip, from Suez Rd<br />Cairo Governorate 4751020</address>
-          </article>
+          {showAfterParty && (
+            <article className="event-grid__party">
+              <span className="event-grid__index">03</span>
+              <p className="kicker">The after-party</p>
+              <h3>Rival<br />Open Air</h3>
+              <p className="event-grid__timing">Right after church</p>
+              <address>Hotel Entrance, Tulip, from Suez Rd<br />Cairo Governorate 4751020</address>
+            </article>
+          )}
         </div>
 
-        <div className="location-links">
+        <div className={showAfterParty ? 'location-links location-links--split' : 'location-links'}>
           <a className="map-link" href={MAP_URL} target="_blank" rel="noreferrer">
             <PinIcon />
             <span>
@@ -185,14 +190,16 @@ export default function App() {
             </span>
             <ArrowIcon />
           </a>
-          <a className="map-link map-link--party" href={PARTY_MAP_URL} target="_blank" rel="noreferrer">
-            <PinIcon />
-            <span>
-              <small>After-party location</small>
-              <strong>Rival Open Air</strong>
-            </span>
-            <ArrowIcon />
-          </a>
+          {showAfterParty && (
+            <a className="map-link map-link--party" href={PARTY_MAP_URL} target="_blank" rel="noreferrer">
+              <PinIcon />
+              <span>
+                <small>After-party location</small>
+                <strong>Rival Open Air</strong>
+              </span>
+              <ArrowIcon />
+            </a>
+          )}
         </div>
       </section>
 
