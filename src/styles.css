@@ -346,6 +346,112 @@ a { color: inherit; }
 .map-link small { display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .25em; font-size: 8px; opacity: .65; }
 .map-link strong { font-family: 'Italiana', Georgia, serif; font-size: 19px; font-weight: 400; }
 
+.portrait {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(340px, .78fr) minmax(480px, 1.22fr);
+  color: var(--ink);
+  background: #eae0d3;
+  border-top: 1px solid #cbb8a5;
+  border-bottom: 1px solid #cbb8a5;
+}
+
+.portrait__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(64px, 8vw, 126px);
+  background: var(--burgundy);
+  color: var(--ivory);
+}
+
+.portrait__copy::after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(246, 234, 218, .24);
+  pointer-events: none;
+}
+
+.portrait__number {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  color: rgba(255, 255, 255, .42);
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+
+.portrait .kicker { color: #d9bd8b; }
+.portrait h2 {
+  margin: 12px 0 30px;
+  font-family: 'Italiana', Georgia, serif;
+  font-size: clamp(52px, 6.6vw, 102px);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.05em;
+}
+
+.portrait h2 i { color: #d7b16b; font-weight: 400; }
+.portrait__note { max-width: 390px; margin: 0; font-family: 'Italiana', Georgia, serif; font-size: clamp(17px, 1.8vw, 23px); line-height: 1.55; color: rgba(250, 242, 231, .72); }
+.portrait__signature { margin-top: 52px; }
+.portrait__signature .monogram { font-size: 44px; }
+
+.portrait__art {
+  position: relative;
+  min-height: 760px;
+  margin: 0;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 60% 42%, rgba(255,255,255,.72), transparent 40%),
+    #f0e8dd;
+}
+
+.portrait__art::before,
+.portrait__art::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.portrait__art::before { inset: 24px; border: 1px solid rgba(100, 56, 30, .2); }
+.portrait__art::after { inset: 0; background: linear-gradient(180deg, transparent 72%, rgba(74, 33, 16, .12)); }
+.portrait__art img {
+  position: relative;
+  z-index: 1;
+  width: min(92%, 760px);
+  max-height: 94svh;
+  object-fit: contain;
+  object-position: bottom center;
+  mix-blend-mode: multiply;
+  filter: sepia(.08) contrast(1.01);
+}
+.portrait__halo {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  font-family: 'Italiana', Georgia, serif;
+  font-size: clamp(100px, 16vw, 250px);
+  line-height: 1;
+  color: rgba(110, 55, 27, .08);
+  letter-spacing: -.08em;
+}
+.portrait__art figcaption {
+  position: absolute;
+  z-index: 3;
+  right: 50px;
+  bottom: 40px;
+  color: #6c3a22;
+  text-transform: uppercase;
+  letter-spacing: .24em;
+  font-size: 8px;
+}
+
 .closing { min-height: 82svh; padding: 26px; display: grid; place-items: center; background: var(--burgundy); }
 .closing__frame { width: 100%; height: calc(82svh - 52px); min-height: 560px; border: 1px solid rgba(246,234,218,.36); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; }
 .closing .kicker { color: #dcc6aa; }
@@ -397,6 +503,15 @@ footer a { justify-self: end; text-underline-offset: 4px; }
   .event-grid article { min-height: 270px; }
   .event-grid article + article { border-left: 0; border-top: 1px solid #cfc1b3; }
   .map-link { padding: 18px 20px; }
+  .portrait { grid-template-columns: 1fr; }
+  .portrait__copy { min-height: 58svh; padding: 88px 42px; }
+  .portrait__copy::after { inset: 12px; }
+  .portrait__number { top: 30px; right: 28px; }
+  .portrait__signature { margin-top: 38px; }
+  .portrait__art { min-height: 72svh; }
+  .portrait__art::before { inset: 12px; }
+  .portrait__art img { width: 100%; max-height: 72svh; }
+  .portrait__art figcaption { right: 28px; bottom: 24px; }
   footer { grid-template-columns: auto 1fr auto; gap: 12px; letter-spacing: .1em; }
   footer p { font-size: 7px; }
 }

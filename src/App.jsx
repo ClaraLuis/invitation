@@ -172,6 +172,26 @@ export default function App() {
         </a>
       </section>
 
+      <section className="portrait" aria-label="Illustrated portrait of Andrew and Clara">
+        <div className="portrait__copy">
+          <span className="portrait__number">03</span>
+          <p className="kicker">A glimpse of forever</p>
+          <h2>Hand in hand,<br /><i>heart to heart.</i></h2>
+          <p className="portrait__note">
+            The beginning of a beautiful new chapter, written together.
+          </p>
+          <div className="portrait__signature"><Monogram /></div>
+        </div>
+        <figure className="portrait__art">
+          <span className="portrait__halo" aria-hidden="true">A&C</span>
+          <img
+            src="/assets/andrew-clara-illustration.png"
+            alt="Sepia illustration of a bride and groom standing arm in arm"
+          />
+          <figcaption>Andrew & Clara · Together, always</figcaption>
+        </figure>
+      </section>
+
       <section className="closing">
         <div className="closing__frame">
           <p className="kicker">Save the moment</p>
