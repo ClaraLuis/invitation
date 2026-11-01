@@ -20,79 +20,6 @@ button { font: inherit; }
 a { color: inherit; }
 
 .invitation { overflow: hidden; }
-.music-dock {
-  position: fixed;
-  z-index: 50;
-  right: 24px;
-  bottom: 24px;
-  width: 248px;
-  min-height: 68px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 13px 13px 13px 17px;
-  color: #fff8ef;
-  background: rgba(73, 10, 15, .93);
-  border: 1px solid rgba(235, 210, 171, .38);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, .34);
-  backdrop-filter: blur(14px);
-  transform: translateZ(0);
-}
-
-.music-dock.is-playing {
-  width: 352px;
-  grid-template-columns: 94px 1fr auto;
-}
-
-.music-dock iframe {
-  width: 94px;
-  height: 53px;
-  border: 0;
-  background: #120e0f;
-}
-
-.music-dock__copy { min-width: 0; }
-.music-dock__copy small,
-.music-dock__copy strong,
-.music-dock__copy span { display: block; }
-.music-dock__copy small {
-  margin-bottom: 4px;
-  color: #d6b36e;
-  text-transform: uppercase;
-  letter-spacing: .22em;
-  font-size: 7px;
-}
-.music-dock__copy strong {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-family: 'Italiana', Georgia, serif;
-  font-size: 17px;
-  font-weight: 400;
-}
-.music-dock__copy span {
-  margin-top: 2px;
-  color: rgba(255, 248, 239, .62);
-  font-size: 8px;
-  letter-spacing: .08em;
-}
-.music-dock__toggle {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border: 1px solid rgba(255, 255, 255, .28);
-  border-radius: 50%;
-  color: #fff8ef;
-  background: rgba(255, 255, 255, .07);
-  cursor: pointer;
-  transition: background .2s ease, transform .2s ease;
-}
-.music-dock__toggle:hover { background: rgba(255, 255, 255, .15); transform: scale(1.04); }
-.music-dock__toggle svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.music-dock:not(.is-playing) .music-dock__toggle svg { animation: music-float 1.6s ease-in-out infinite; }
 
 .hero {
   min-height: 100svh;
@@ -587,19 +514,8 @@ footer p { text-align: center; }
 footer a { justify-self: end; text-underline-offset: 4px; }
 
 @keyframes nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
-@keyframes music-float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-2px) rotate(4deg); } }
 
 @media (max-width: 760px) {
-  .music-dock,
-  .music-dock.is-playing {
-    right: 12px;
-    bottom: 12px;
-    width: min(328px, calc(100vw - 24px));
-    min-height: 62px;
-  }
-  .music-dock.is-playing { grid-template-columns: 76px 1fr auto; }
-  .music-dock iframe { width: 76px; height: 43px; }
-  .music-dock__toggle { width: 36px; height: 36px; }
   .hero { min-height: 100svh; }
   .hero::before { inset: 10px; }
   .hero__header { top: 26px; left: 24px; right: 24px; }
