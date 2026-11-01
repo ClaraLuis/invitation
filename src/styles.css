@@ -248,7 +248,11 @@ a { color: inherit; }
   color: #2d2521;
   background: #f2e9dc;
   box-shadow: 0 6px 20px rgba(0,0,0,.2);
-  transition: transform .9s .36s cubic-bezier(.2,.7,.2,1);
+  opacity: 0;
+  transform: translateY(16%);
+  transition:
+    transform .9s .36s cubic-bezier(.2,.7,.2,1),
+    opacity .18s .32s ease;
 }
 
 .envelope__letter small, .envelope__letter em { text-transform: uppercase; letter-spacing: .2em; font-size: 8px; font-style: normal; }
@@ -298,7 +302,7 @@ a { color: inherit; }
 .hero__scroll { display: none; }
 
 .is-open .envelope__flap { transform: rotateX(180deg); z-index: 1; }
-.is-open .envelope__letter { transform: translateY(-72%); }
+.is-open .envelope__letter { opacity: 1; transform: translateY(-72%); }
 .is-open .wax-seal { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
 .is-open .envelope { transform: translateY(2vh) scale(.96); }
 .is-open .hero__names { opacity: 0; transform: translateY(16px); }
