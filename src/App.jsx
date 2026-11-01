@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import editorialPhoto from '../assets/andrew-clara-editorial.png'
 import weddingIllustration from '../assets/andrew-clara-illustration.png'
 
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Heliopolis+Evangelical+Church+18+Cleopatra+Almazah+Heliopolis+Cairo'
@@ -92,11 +91,11 @@ export default function App() {
         </button>
       </aside>
 
-      <section className="hero" aria-label="Wedding invitation cover">
+      <section className="hero hero--illustrated" aria-label="Wedding invitation cover">
         <img
           className="hero__photo"
-          src={editorialPhoto}
-          alt="Black and white editorial portrait of a bride and groom holding hands"
+          src={weddingIllustration}
+          alt="Sepia illustration of a bride and groom standing arm in arm"
         />
         <div className="hero__shade" />
 
@@ -124,6 +123,10 @@ export default function App() {
           </span>
           <span className="envelope__front" />
           <span className="envelope__flap" />
+          <span className="envelope__foil" aria-hidden="true">
+            <small>Wedding invitation</small>
+            <strong>Andrew <i>&</i> Clara</strong>
+          </span>
           <span className="wax-seal"><Monogram small /></span>
         </button>
 
@@ -172,26 +175,6 @@ export default function App() {
           </span>
           <ArrowIcon />
         </a>
-      </section>
-
-      <section className="portrait" aria-label="Illustrated portrait of Andrew and Clara">
-        <div className="portrait__copy">
-          <span className="portrait__number">03</span>
-          <p className="kicker">A glimpse of forever</p>
-          <h2>Hand in hand,<br /><i>heart to heart.</i></h2>
-          <p className="portrait__note">
-            The beginning of a beautiful new chapter, written together.
-          </p>
-          <div className="portrait__signature"><Monogram /></div>
-        </div>
-        <figure className="portrait__art">
-          <span className="portrait__halo" aria-hidden="true">A&C</span>
-          <img
-            src={weddingIllustration}
-            alt="Sepia illustration of a bride and groom standing arm in arm"
-          />
-          <figcaption>Andrew & Clara · Together, always</figcaption>
-        </figure>
       </section>
 
       <section className="closing">
