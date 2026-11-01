@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Heliopolis+Evangelical+Church+18+Cleopatra+Almazah+Heliopolis+Cairo'
+const SONG_VIDEO_ID = 'NtLLVs-jA4U'
 
 function Monogram({ small = false }) {
   return (
@@ -27,8 +28,27 @@ function PinIcon() {
   )
 }
 
+function MusicIcon({ paused = false }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      {paused ? (
+        <>
+          <path d="M9 7v10M15 7v10" />
+        </>
+      ) : (
+        <>
+          <path d="M9 18V6l9-2v12" />
+          <circle cx="6.5" cy="18" r="2.5" />
+          <circle cx="15.5" cy="16" r="2.5" />
+        </>
+      )}
+    </svg>
+  )
+}
+
 export default function App() {
   const [opened, setOpened] = useState(false)
+  const [musicOn, setMusicOn] = useState(false)
   const detailsRef = useRef(null)
 
   useEffect(() => {
@@ -39,10 +59,37 @@ export default function App() {
     return () => window.clearTimeout(timer)
   }, [opened])
 
-  const openInvitation = () => setOpened(true)
+  const openInvitation = () => {
+    setOpened(true)
+    setMusicOn(true)
+  }
 
   return (
     <main className={opened ? 'invitation is-open' : 'invitation'}>
+      <aside className={musicOn ? 'music-dock is-playing' : 'music-dock'} aria-label="Background music player">
+        {musicOn && (
+          <iframe
+            title="Life With You by Seph Schlueter"
+            src={`https://www.youtube.com/embed/${SONG_VIDEO_ID}?autoplay=1&playsinline=1&rel=0`}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        )}
+        <div className="music-dock__copy">
+          <small>{musicOn ? 'Now playing' : 'Our song'}</small>
+          <strong>Life With You</strong>
+          <span>Seph Schlueter</span>
+        </div>
+        <button
+          type="button"
+          className="music-dock__toggle"
+          onClick={() => setMusicOn((current) => !current)}
+          aria-label={musicOn ? 'Pause Life With You' : 'Play Life With You by Seph Schlueter'}
+        >
+          <MusicIcon paused={musicOn} />
+        </button>
+      </aside>
+
       <section className="hero" aria-label="Wedding invitation cover">
         <img
           className="hero__photo"
