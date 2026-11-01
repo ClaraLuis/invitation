@@ -4,6 +4,18 @@ import weddingSong from '../assets/life-with-you-seph-schlueter.mp3'
 
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Heliopolis+Evangelical+Church+18+Cleopatra+Almazah+Heliopolis+Cairo'
 const PARTY_MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Rival+Open+Air+Hotel+Entrance+Tulip+from+Suez+Rd+Cairo+Governorate+4751020'
+const WEDDING_TIMESTAMP = new Date('2026-11-11T17:30:00+02:00').getTime()
+
+function getCountdown() {
+  const remaining = Math.max(0, WEDDING_TIMESTAMP - Date.now())
+  return {
+    complete: remaining === 0,
+    days: Math.floor(remaining / 86_400_000),
+    hours: Math.floor((remaining / 3_600_000) % 24),
+    minutes: Math.floor((remaining / 60_000) % 60),
+    seconds: Math.floor((remaining / 1_000) % 60),
+  }
+}
 
 function Monogram({ small = false }) {
   return (
@@ -32,6 +44,7 @@ function PinIcon() {
 
 export default function App() {
   const [opened, setOpened] = useState(false)
+  const [countdown, setCountdown] = useState(getCountdown)
   const [showAfterParty] = useState(
     () => new URLSearchParams(window.location.search).get('i') === 't',
   )
@@ -45,6 +58,11 @@ export default function App() {
     }, 1050)
     return () => window.clearTimeout(timer)
   }, [opened])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setCountdown(getCountdown()), 1000)
+    return () => window.clearInterval(timer)
+  }, [])
 
   const openInvitation = () => {
     setOpened(true)
@@ -76,7 +94,7 @@ export default function App() {
         <header className="hero__header">
           <Monogram small />
           <span className="hero__eyebrow">Wedding invitation</span>
-          <span className="hero__time">5:30 PM</span>
+          <span className="hero__time">11.11.26 · 5:30 PM</span>
         </header>
 
         <div className="hero__word hero__word--left" aria-hidden="true">TOGETHER</div>
@@ -126,6 +144,34 @@ export default function App() {
         <p className="details__intro">
           Together with their families, joyfully invite you to witness the beginning of their forever.
         </p>
+
+        <div className="date-countdown">
+          <time className="date-countdown__date" dateTime="2026-11-11T17:30:00+02:00">
+            <small>Wednesday</small>
+            <strong>11</strong>
+            <span>November · 2026</span>
+          </time>
+          <div className="countdown" aria-label="Countdown to the wedding">
+            <p>Counting down to forever</p>
+            {countdown.complete ? (
+              <strong className="countdown__complete">The celebration has begun</strong>
+            ) : (
+              <div className="countdown__units">
+                {[
+                  ['Days', countdown.days],
+                  ['Hours', countdown.hours],
+                  ['Minutes', countdown.minutes],
+                  ['Seconds', countdown.seconds],
+                ].map(([label, value]) => (
+                  <span className="countdown__unit" key={label}>
+                    <strong>{String(value).padStart(2, '0')}</strong>
+                    <small>{label}</small>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
 
         <div className="details__rule"><span>A</span><i /><span>C</span></div>
 
